@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import { useSelector } from "react-redux";
+import { selectDisplayText } from "../selectors";
 
 const Score = styled.div`
   align-items: center;
@@ -21,43 +22,10 @@ const Score = styled.div`
  */
 
 const Display = () => {
-  const gameIsPlaying = useSelector((state) => state.playing);
-  const winner = useSelector((state) => state.winner);
-  const player1Score = useSelector((state) => state.player1);
-  const player2Score = useSelector((state) => state.player2);
-  const advantage = useSelector((state) => state.advantage);
+  const displayText = useSelector(selectDisplayText);
 
-  if (winner) {
-    return winner === "player1" ? (
-      <Score>
-        <p>Joueur 1 gagne 🏆</p>
-      </Score>
-    ) : (
-      <Score>
-        <p>Joueur 2 gagne 🏆</p>
-      </Score>
-    );
-  } else if (gameIsPlaying === false) {
-    return (
-      <Score>
-        <p>C'est la pause</p>
-      </Score>
-    );
-  } else {
-    let text = player1Score + " - " + player2Score;
-    if (advantage) {
-      if (advantage === "player1") {
-        text = "🎾 " + text;
-      } else {
-        text = text + " 🎾";
-      }
-    }
-    return (
-      <Score>
-        <p>{text}</p>
-      </Score>
-    );
-  }
+  return <Score>{displayText}</Score>;
+
 };
 
 export default Display;

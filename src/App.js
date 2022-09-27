@@ -3,6 +3,7 @@ import Display from "./Components/Display";
 import PlayPauseButton from "./Components/PlayPauseButton";
 import PointScoredButton from "./Components/PointScoredButton";
 import ResetButton from "./Components/ResetButton";
+import { PlayerScore } from "./Components/PlayerScore";
 
 const Main = styled.main`
   display: flex;
@@ -36,6 +37,8 @@ function App() {
   return (
     <Main>
       <Display />
+      <PlayerScore playerId={"player1"} playerName={"Joan"}/>
+      <PlayerScore playerId={"player2"} playerName={"Louison"}/>
       <ButtonsRow>
         <PointScoredButton playerId={"player1"}>Joueur 1</PointScoredButton>
         <PointScoredButton playerId={"player2"}>Joueur 2</PointScoredButton>
